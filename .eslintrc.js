@@ -9,7 +9,6 @@ module.exports = {
         node: true,
     },
     ignorePatterns: '*.spec.ts',
-    root: true,
     parserOptions: { project: './tsconfig.json', sourceType: 'module' },
     plugins: ['simple-import-sort'],
     overrides: [
