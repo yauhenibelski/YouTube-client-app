@@ -31,7 +31,18 @@ module.exports = {
                 'import/extensions': 'off',
                 'import/prefer-default-export': 'off',
                 '@typescript-eslint/no-explicit-any': 'error',
-                'max-len': ['error', 100],
+                'no-useless-constructor': 'off',
+                'class-methods-use-this': 'off',
+                '@typescript-eslint/lines-between-class-members': 'off',
+                'lines-between-class-members': 'off',
+                'no-empty-function': 'off',
+                '@typescript-eslint/naming-convention': [
+                    'error',
+                    {
+                        selector: 'variable',
+                        format: ['camelCase', 'UPPER_CASE', 'StrictPascalCase'],
+                    },
+                ],
                 '@angular-eslint/directive-selector': [
                     'error',
                     {

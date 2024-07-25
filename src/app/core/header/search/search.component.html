@@ -1,0 +1,9 @@
+<button mat-icon-button>
+    <mat-icon>smart_display</mat-icon>
+</button>
+
+<input placeholder="Search by word" [formControl]="search" (keydown.enter)="loadContent()" />
+
+<app-custom-button [disabled]="!search.valid" (click)="loadContent()">Search</app-custom-button>
+
+<ng-content />

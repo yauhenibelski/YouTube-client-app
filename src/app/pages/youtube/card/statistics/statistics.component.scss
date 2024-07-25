@@ -1,0 +1,13 @@
+:host {
+    display: flex;
+    justify-content: space-around;
+    font-size: 10px;
+}
+
+.icon-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 4px;
+}

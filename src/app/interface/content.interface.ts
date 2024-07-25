@@ -4,7 +4,7 @@ interface ContentThumbnailSize {
     height: number;
 }
 
-interface Statistics {
+export interface Statistics {
     viewCount: string;
     likeCount: string;
     dislikeCount: string;
@@ -43,7 +43,7 @@ interface PageInfo {
     resultsPerPage: number;
 }
 
-interface Content {
+export interface Content {
     kind: string;
     etag: string;
     id: string;

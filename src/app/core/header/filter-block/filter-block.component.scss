@@ -1,0 +1,44 @@
+:host {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.btn-wrap {
+    display: flex;
+    align-items: center;
+
+    button {
+        letter-spacing: 0.031rem;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        font:
+            400 1rem / 1.5rem Roboto,
+            sans-serif;
+    }
+}
+
+.btn-wrap,
+.filter-by-word-wrap {
+    margin-left: 10px;
+}
+
+.filter-by-word-wrap {
+    input {
+        margin: 0 3px;
+        outline: none;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        padding: 5px 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition:
+            border-color 0.3s,
+            box-shadow 0.3s;
+
+        &:focus {
+            border-color: #333333;
+        }
+    }
+}

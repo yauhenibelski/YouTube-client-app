@@ -152,7 +152,7 @@ export const mockContent: ContentList = {
             etag: '"Fznwjl6JEQdo1MGvHOGaz_YanRU/6e0k9ik7TThWpqueHGOhTRIN1-A"',
             id: 'k5E2AVpwsko',
             snippet: {
-                publishedAt: '2024-03-05T16:48:15.000Z',
+                publishedAt: '2024-07-03T16:48:15.000Z',
                 channelId: 'UCWv7vMbMWH4-V0ZXdmDpPBA',
                 title: 'Angular Tutorial for Beginners: Learn Angular from Scratch | Mosh',
                 description:

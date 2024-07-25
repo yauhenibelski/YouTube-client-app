@@ -1,0 +1,5 @@
+<app-filter-block [@openClose]="isShowFilterBlock() ? 'open' : 'closed'" />
+
+<app-content-list
+    [contentList]="contentList() | sortContent: sortOptions() | filterContent: filterOptions()"
+/>
