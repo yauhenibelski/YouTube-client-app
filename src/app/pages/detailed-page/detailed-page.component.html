@@ -1,0 +1,23 @@
+@if (content$ | async; as content) {
+    <button mat-button (click)="returnWindowHistory()">
+        <mat-icon>reply</mat-icon>
+    </button>
+
+    <mat-card [appPaintBorderBottom]="content.snippet.publishedAt">
+        <div class="img-wrap">
+            <img alt="thumbnail" [src]="content.snippet.thumbnails.maxres.url" />
+            <app-statistics [statistics]="content && content.statistics" />
+        </div>
+
+        <mat-card-content>
+            <mat-card-header>
+                <mat-card-title>{{ content.snippet.title }}</mat-card-title>
+                <mat-card-subtitle>
+                    {{ content.snippet.publishedAt | date: 'fullDate' }}
+                </mat-card-subtitle>
+            </mat-card-header>
+
+            <p>{{ content.snippet.description }}</p>
+        </mat-card-content>
+    </mat-card>
+}

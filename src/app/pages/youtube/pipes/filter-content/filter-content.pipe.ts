@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Content } from '../../../../interface/content.interface';
-import { Filter } from '../../../../interface/filter-options.interface';
+import { Content } from '@interface/content.interface';
+import { Filter } from '@interface/filter-options.interface';
 
 @Pipe({
     name: 'filterContent',

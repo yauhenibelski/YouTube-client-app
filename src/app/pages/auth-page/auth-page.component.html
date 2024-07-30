@@ -1,1 +1,38 @@
-<p>auth-page works!</p>
+<mat-card>
+    <form [formGroup]="loginForm">
+        <p>Log in</p>
+
+        <mat-form-field [appearance]="'outline'">
+            <mat-label>Enter your email</mat-label>
+            <input matInput placeholder="pat@example.com" formControlName="email" />
+        </mat-form-field>
+
+        <mat-form-field [appearance]="'outline'">
+            <mat-label>Enter your password</mat-label>
+
+            <input
+                matInput
+                formControlName="password"
+                [type]="isPasswordHide ? 'password' : 'text'"
+            />
+
+            <button
+                mat-icon-button
+                matSuffix
+                [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="isPasswordHide"
+                (click)="isPasswordHide = !isPasswordHide; $event.stopPropagation()"
+            >
+                <mat-icon>{{ isPasswordHide ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+        </mat-form-field>
+
+        <button
+            mat-flat-button
+            [disabled]="isAuthorized() ? false : !loginForm.valid"
+            (click)="handleLogin(); $event.preventDefault()"
+        >
+            Log{{ isAuthorized() ? 'out' : 'in' }}
+        </button>
+    </form>
+</mat-card>

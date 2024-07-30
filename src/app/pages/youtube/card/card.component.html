@@ -10,4 +10,6 @@
     <mat-card-content>
         {{ content().snippet.title }}
     </mat-card-content>
+
+    <app-custom-button [routerLink]="['/detailed', content().id]">more</app-custom-button>
 </mat-card>

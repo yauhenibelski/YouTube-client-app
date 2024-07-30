@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Content } from '@interface/content.interface';
 import { CardComponent } from '../card/card.component';
-import { Content } from '../../../interface/content.interface';
 
 @Component({
     selector: 'app-content-list',

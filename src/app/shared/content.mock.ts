@@ -1,4 +1,4 @@
-import { ContentList } from '../interface/content.interface';
+import { ContentList } from '@interface/content.interface';
 
 /* eslint-disable max-len */
 export const mockContent: ContentList = {

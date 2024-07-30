@@ -1,0 +1,34 @@
+:host {
+    display: block;
+    max-width: 1440px;
+    margin: auto;
+    margin-top: 30px;
+}
+
+mat-card {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, auto));
+    align-items: center;
+    justify-items: center;
+    overflow: hidden;
+    background-color: #00000010;
+    margin: 0 30px;
+}
+
+.img-wrap {
+    img {
+        display: block;
+        width: 100%;
+    }
+}
+mat-card-content {
+    align-self: start;
+    p {
+        margin-top: 20px;
+        word-break: break-word;
+    }
+}
+
+mat-spinner {
+    margin: auto;
+}

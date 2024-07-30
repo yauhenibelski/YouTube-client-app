@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Content } from '../../../../interface/content.interface';
-import { Sort } from '../../../../interface/sort-options.interface';
+import { Content } from '@interface/content.interface';
+import { Sort } from '@interface/sort-options.interface';
 
 @Pipe({
     name: 'sortContent',

@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { ContentService } from '../../../shared/services/content/content.service';
-import { CustomButtonComponent } from '../../../shared/components/custom-button/custom-button.component';
+import { ContentStoreService } from '@shared/services/content-store/content-store.service';
+import { CustomButtonComponent } from '@shared/components/custom-button/custom-button.component';
 
 @Component({
     selector: 'app-search',
@@ -19,7 +19,7 @@ export class SearchComponent {
         validators: [Validators.required],
     });
 
-    constructor(private readonly contentService: ContentService) {}
+    constructor(private readonly contentService: ContentStoreService) {}
 
     loadContent(): void {
         if (!this.search.valid) return;

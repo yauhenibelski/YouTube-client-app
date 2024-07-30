@@ -1,0 +1,16 @@
+<span>Sorting by:</span>
+
+<div class="btn-wrap">
+    <button (click)="sortByStatisticType(date, 'date')">date</button>
+    <mat-icon #date />
+</div>
+
+<div class="btn-wrap">
+    <button (click)="sortByStatisticType(views, 'views')">count of views</button>
+    <mat-icon #views />
+</div>
+
+<div class="filter-by-word-wrap">
+    <span>word or sentence</span>
+    <input [formControl]="filterByWord" />
+</div>

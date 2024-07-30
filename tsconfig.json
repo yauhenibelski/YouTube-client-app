@@ -3,6 +3,13 @@
 {
     "compileOnSave": false,
     "compilerOptions": {
+        "paths": {
+            "@core/*": ["./src/app/core/*"],
+            "@interface/*": ["./src/app/interface/*"],
+            "@pages/*": ["./src/app/pages/*"],
+            "@router/*": ["./src/app/router/*"],
+            "@shared/*": ["./src/app/shared/*"]
+        },
         "outDir": "./dist/out-tsc",
         "strict": true,
         "noImplicitOverride": true,
