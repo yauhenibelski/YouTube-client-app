@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { EMPTY, Observable, of, switchMap } from 'rxjs';
+import { EMPTY, map, Observable, switchMap } from 'rxjs';
 import { ContentStoreService } from '@shared/services/content-store/content-store.service';
 import { Content } from '@interface/content.interface';
 
@@ -21,9 +21,11 @@ export class DetailedPageComponent {
         switchMap(params => {
             const id = params.get('id');
 
-            const content = this.contentStoreService.getContentById(`${id}`);
+            const content = this.contentStoreService
+                .getContentById(`${id}`)
+                .pipe(map(contentItems => contentItems?.at(0)));
 
-            return content ? of(content) : (this.router.navigateByUrl('/404'), EMPTY);
+            return content || (this.router.navigateByUrl('/404'), EMPTY);
         }),
     );
 

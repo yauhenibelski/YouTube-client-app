@@ -5,11 +5,10 @@ interface ContentThumbnailSize {
 }
 
 export interface Statistics {
-    viewCount: string;
-    likeCount: string;
-    dislikeCount: string;
-    favoriteCount: string;
-    commentCount: string;
+    viewCount?: string;
+    likeCount?: string;
+    favoriteCount?: string;
+    commentCount?: string;
 }
 
 interface Thumbnail {
@@ -37,7 +36,10 @@ interface Snippet {
     localized: Localized;
     defaultAudioLanguage: string;
 }
-
+interface Id {
+    kind: string;
+    videoId: string;
+}
 interface PageInfo {
     totalResults: number;
     resultsPerPage: number;
@@ -46,7 +48,7 @@ interface PageInfo {
 export interface Content {
     kind: string;
     etag: string;
-    id: string;
+    id: Id;
     snippet: Snippet;
     statistics: Statistics;
 }

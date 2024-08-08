@@ -1,6 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable, computed, signal } from '@angular/core';
-import { Content } from '@interface/content.interface';
-import { mockContent } from '@shared/content.mock';
+import { Content, ContentList } from '@interface/content.interface';
+import { concatMap, map, Observable, Subscription } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
@@ -10,13 +11,45 @@ export class ContentStoreService {
 
     readonly content = computed(this.contentSignal);
 
-    loadContent(): void {
-        this.contentSignal.set(mockContent.items);
+    private searchContentSubscription: Subscription | null = null;
+
+    constructor(private readonly httpClient: HttpClient) {}
+
+    loadSearchContent(searchParameter: string): void {
+        if (this.searchContentSubscription) {
+            this.searchContentSubscription.unsubscribe();
+        }
+
+        this.searchContentSubscription = this.httpClient
+            .get<ContentList>('search', {
+                params: {
+                    type: 'video',
+                    maxResults: 15,
+                    q: searchParameter,
+                },
+            })
+            .pipe(
+                map(({ items }) => items.map(({ id }) => id.videoId)),
+                concatMap(idArr => this.getContentById(idArr)),
+            )
+            .subscribe({
+                next: content => {
+                    this.contentSignal.set(content ?? []);
+                },
+                complete: () => {
+                    this.searchContentSubscription = null;
+                },
+            });
     }
 
-    getContentById(contentId: string): Content | undefined {
-        this.loadContent();
-
-        return this.contentSignal().find(({ id }) => id === contentId);
+    getContentById(contentId: string | string[]): Observable<Content[] | undefined> {
+        return this.httpClient
+            .get<ContentList>('videos', {
+                params: {
+                    part: ['snippet', 'statistics'],
+                    id: contentId,
+                },
+            })
+            .pipe(map(({ items }) => items));
     }
 }

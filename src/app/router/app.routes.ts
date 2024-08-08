@@ -5,24 +5,24 @@ import { isUnauthorizedGuard } from './guard/is-unauthorized/is-unauthorized.gua
 export const routes: Routes = [
     {
         path: 'login',
-        loadChildren: () => import('../pages/auth-page/auth.module').then(m => m.AuthModule),
+        loadChildren: () => import('@pages/auth-page/auth.module').then(m => m.AuthModule),
         canActivate: [isUnauthorizedGuard],
     },
     {
-        path: 'con-list',
-        loadChildren: () => import('../pages/youtube/youtube.module').then(m => m.YoutubeModule),
+        path: 'content-list',
+        loadChildren: () => import('@pages/youtube/youtube.module').then(m => m.YoutubeModule),
         canActivate: [isAuthorizedGuard],
     },
     {
         path: 'detailed',
         loadChildren: () =>
-            import('../pages/detailed-page/detailed.module').then(m => m.DetailedModule),
+            import('@pages/detailed-page/detailed.module').then(m => m.DetailedModule),
         canActivate: [isAuthorizedGuard],
     },
     {
         path: 'not-found',
         loadComponent: () =>
-            import('../pages/not-found/not-found.component').then(m => m.NotFoundComponent),
+            import('@pages/not-found/not-found.component').then(m => m.NotFoundComponent),
     },
     {
         path: '',

@@ -24,7 +24,7 @@ export class FilterBlockComponent {
 
     constructor(public readonly filterBlockService: FilterBlockService) {
         this.filterByWord.valueChanges
-            .pipe(takeUntilDestroyed(), distinctUntilChanged(), debounceTime(500))
+            .pipe(takeUntilDestroyed(), debounceTime(500), distinctUntilChanged())
             .subscribe(value => this.filterBlockService.showByWord(value));
     }
 

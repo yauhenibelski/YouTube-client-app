@@ -12,13 +12,13 @@ export class SortContentPipe implements PipeTransform {
             const sortByIncrease = (a: Content, b: Content) => {
                 return statisticType === 'date'
                     ? Date.parse(a.snippet.publishedAt) - Date.parse(b.snippet.publishedAt)
-                    : +a.statistics.viewCount - +b.statistics.viewCount;
+                    : Number(a.statistics.viewCount) - Number(b.statistics.viewCount);
             };
 
             const sortByDecrease = (a: Content, b: Content) => {
                 return statisticType === 'date'
                     ? Date.parse(b.snippet.publishedAt) - Date.parse(a.snippet.publishedAt)
-                    : +b.statistics.viewCount - +a.statistics.viewCount;
+                    : Number(b.statistics.viewCount) - Number(a.statistics.viewCount);
             };
 
             if (direction) {
