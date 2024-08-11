@@ -7,14 +7,19 @@
 mat-card {
     width: 100%;
     max-width: 500px;
+    padding: 20px;
 
     form {
         display: flex;
         flex-direction: column;
-        padding: 20px;
 
         mat-form-field {
             margin: 5px;
         }
     }
+}
+
+.btns-wrap {
+    display: flex;
+    justify-content: space-between;
 }

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, computed, signal } from '@angular/core';
-import { Content, ContentList } from '@interface/content.interface';
+import { Content, ContentList, SearchList } from '@interface/content.interface';
 import { concatMap, map, Observable, Subscription } from 'rxjs';
 
 @Injectable({
@@ -21,7 +21,7 @@ export class ContentStoreService {
         }
 
         this.searchContentSubscription = this.httpClient
-            .get<ContentList>('search', {
+            .get<SearchList>('search', {
                 params: {
                     type: 'video',
                     maxResults: 15,

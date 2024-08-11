@@ -1,0 +1,79 @@
+@let control = cardForm.controls;
+
+<mat-card>
+    <form [formGroup]="cardForm">
+        <p>Create new card</p>
+
+        <mat-form-field [appearance]="'outline'">
+            <mat-label>Title</mat-label>
+            <input matInput formControlName="title" />
+            <mat-error>{{ control.title.errors | getControlErrorMessage }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field [appearance]="'outline'">
+            <mat-label>Img</mat-label>
+            <input matInput formControlName="imageLink" />
+            <mat-error>{{ control.imageLink.errors | getControlErrorMessage }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field [appearance]="'outline'">
+            <mat-label>Link video</mat-label>
+            <input matInput formControlName="videoLink" />
+            <mat-error>{{ control.videoLink.errors | getControlErrorMessage }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field [appearance]="'outline'">
+            <mat-label>Creation date</mat-label>
+            <input matInput formGroupName="date" formControlName="date" [matDatepicker]="picker" />
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error>{{ control.date.errors | getControlErrorMessage }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field [appearance]="'outline'">
+            <mat-label>Description</mat-label>
+            <textarea matInput formControlName="description"></textarea>
+            <mat-error>{{ control.description.errors | getControlErrorMessage }}</mat-error>
+        </mat-form-field>
+
+        <ng-container formArrayName="tags">
+            @for (tag of tags.controls; track tag.value) {
+                <mat-form-field [appearance]="'outline'">
+                    <mat-label>Tag</mat-label>
+                    <input matInput [formControlName]="$index" [readonly]="true" />
+                    <button
+                        mat-icon-button
+                        matSuffix
+                        type="button"
+                        (click)="removeTag($index); $event.preventDefault()"
+                    >
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </mat-form-field>
+            }
+        </ng-container>
+
+        @if (canAddTag) {
+            <mat-form-field [appearance]="'outline'">
+                <mat-label>Add tag</mat-label>
+                <input matInput [formControl]="newTagControl" />
+                <button
+                    mat-icon-button
+                    matSuffix
+                    type="button"
+                    [disabled]="!newTagControl.value"
+                    (click)="addTag(); $event.preventDefault()"
+                >
+                    <mat-icon>add</mat-icon>
+                </button>
+                <mat-error>{{ newTagControl.errors | getControlErrorMessage }}</mat-error>
+            </mat-form-field>
+        }
+    </form>
+
+    <div class="btns-wrap">
+        <button mat-flat-button [disabled]="!isFormValid">Create card</button>
+        <button mat-flat-button (click)="resetForm()">Reset</button>
+    </div>
+</mat-card>

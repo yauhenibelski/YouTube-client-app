@@ -45,17 +45,25 @@ interface PageInfo {
     resultsPerPage: number;
 }
 
-export interface Content {
+interface SearchContent {
     kind: string;
     etag: string;
     id: Id;
+}
+export interface Content extends Omit<SearchContent, 'id'> {
     snippet: Snippet;
     statistics: Statistics;
+    id: string;
 }
 
-export interface ContentList {
+export interface ContentList<T = Content> {
     kind: string;
     etag: string;
     pageInfo: PageInfo;
-    items: Content[];
+    items: T[];
+}
+
+export interface SearchList<T = SearchContent> extends ContentList<T> {
+    regionCode: string;
+    nextPageToken: string;
 }

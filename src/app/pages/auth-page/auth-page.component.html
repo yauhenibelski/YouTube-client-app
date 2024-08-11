@@ -5,6 +5,7 @@
         <mat-form-field [appearance]="'outline'">
             <mat-label>Enter your email</mat-label>
             <input matInput placeholder="pat@example.com" formControlName="email" />
+            <mat-error>{{ errorEmailMessage }}</mat-error>
         </mat-form-field>
 
         <mat-form-field [appearance]="'outline'">
@@ -15,6 +16,8 @@
                 formControlName="password"
                 [type]="isPasswordHide ? 'password' : 'text'"
             />
+
+            <mat-error>{{ errorPasswordMessage }}</mat-error>
 
             <button
                 mat-icon-button
