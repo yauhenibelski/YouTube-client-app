@@ -1,0 +1,18 @@
+@for (content of contentChunk; track content.id) {
+    @if (content | isCustomCard) {
+        <app-custom-card [content]="content" />
+    } @else {
+        <app-card [content]="content" />
+    }
+}
+
+@let contentLength = length() ?? contentList().length;
+
+@if (contentLength > pageSize()) {
+    <mat-paginator
+        [hidePageSize]="true"
+        [length]="contentLength"
+        [pageSize]="pageSize()"
+        (page)="handleSwitchEvent($event)"
+    />
+}

@@ -1,0 +1,38 @@
+:host {
+    display: flex;
+    position: relative;
+
+    &:hover {
+        app-favorite:not(.active) {
+            opacity: 1;
+        }
+    }
+}
+
+app-favorite {
+    transition: 0.3s;
+    opacity: 0;
+}
+
+.active {
+    opacity: 1;
+}
+
+mat-card {
+    margin: 5px;
+    width: 100%;
+}
+
+[mat-card-image] {
+    width: 100%;
+}
+
+mat-card-content {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+mat-card-actions {
+    justify-content: space-between;
+}

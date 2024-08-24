@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { YoutubeRoutingModule } from './youtube-routing.module';
-import { CardComponent } from './card/card.component';
 import { FilterContentPipe } from './pipes/filter-content/filter-content.pipe';
 import { YoutubePageComponent } from './youtube-page.component';
-import { ContentListComponent } from './content-list/content-list.component';
+import { ContentListComponent } from '../../shared/components/content-list/content-list.component';
 import { SortContentPipe } from './pipes/sort-content/sort-content.pipe';
 import { FilterBlockComponent } from './filter-block/filter-block.component';
 
@@ -11,7 +10,6 @@ import { FilterBlockComponent } from './filter-block/filter-block.component';
     declarations: [YoutubePageComponent],
     imports: [
         YoutubeRoutingModule,
-        CardComponent,
         FilterContentPipe,
         ContentListComponent,
         FilterContentPipe,

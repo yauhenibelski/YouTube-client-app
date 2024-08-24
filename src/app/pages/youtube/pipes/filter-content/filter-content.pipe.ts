@@ -7,7 +7,11 @@ import { Filter } from '@interface/filter-options.interface';
     standalone: true,
 })
 export class FilterContentPipe implements PipeTransform {
-    transform(content: Content[], filter: Filter): Content[] {
+    transform(content: Content[] | undefined, filter: Filter): Content[] {
+        if (!content) {
+            return [];
+        }
+
         if (filter.word) {
             return content.filter(({ snippet }) =>
                 snippet.title.toLowerCase().includes(filter.word.toLocaleLowerCase()),

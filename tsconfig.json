@@ -8,7 +8,8 @@
             "@interface/*": ["./src/app/interface/*"],
             "@pages/*": ["./src/app/pages/*"],
             "@router/*": ["./src/app/router/*"],
-            "@shared/*": ["./src/app/shared/*"]
+            "@shared/*": ["./src/app/shared/*"],
+            "@store/*": ["./src/app/store/*"]
         },
         "outDir": "./dist/out-tsc",
         "strict": true,

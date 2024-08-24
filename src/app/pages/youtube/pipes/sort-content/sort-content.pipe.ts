@@ -7,7 +7,11 @@ import { Sort } from '@interface/sort-options.interface';
     standalone: true,
 })
 export class SortContentPipe implements PipeTransform {
-    transform(content: Content[], { statisticType, direction }: Sort): Content[] {
+    transform(content: Content[] | undefined, { statisticType, direction }: Sort): Content[] {
+        if (!content) {
+            return [];
+        }
+
         if (statisticType) {
             const sortByIncrease = (a: Content, b: Content) => {
                 return statisticType === 'date'

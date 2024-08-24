@@ -1,0 +1,26 @@
+@let isFavorite = isFavorite$ | async;
+
+<mat-card [appPaintBorderBottom]="content().snippet.publishedAt">
+    <img
+        mat-card-image
+        [src]="content().snippet.thumbnails.medium.url"
+        [alt]="content().snippet.title"
+    />
+
+    <app-statistics [statistics]="content().statistics" />
+
+    <mat-card-content>
+        {{ content().snippet.title }}
+    </mat-card-content>
+
+    <mat-card-actions>
+        <app-custom-button [routerLink]="['/detailed', content().id]">more</app-custom-button>
+
+        <app-favorite
+            [class.active]="isFavorite"
+            [isFavorite]="isFavorite"
+            [matTooltip]="isFavorite ? 'Remove from favorite' : 'Add to favorite'"
+            (toggle)="toggleFavorite($event)"
+        />
+    </mat-card-actions>
+</mat-card>

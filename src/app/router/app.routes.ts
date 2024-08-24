@@ -34,6 +34,13 @@ export const routes: Routes = [
         canMatch: [isAdminGuard],
     },
     {
+        path: 'favorite',
+        loadComponent: () =>
+            import('@pages/favorite-page/favorite-page.component').then(
+                ({ FavoritePageComponent }) => FavoritePageComponent,
+            ),
+    },
+    {
         path: '',
         pathMatch: 'full',
         redirectTo: '/content-list',

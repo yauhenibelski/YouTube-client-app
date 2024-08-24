@@ -1,0 +1,17 @@
+<mat-card [appPaintBorderBottom]="content().date">
+    <img
+        #img
+        mat-card-image
+        [src]="content().imageSrc"
+        [alt]="content().title"
+        (error)="img.src = 'https://demofree.sirv.com/nope-not-here.jpg'"
+    />
+
+    <mat-card-content>
+        {{ content().title }}
+    </mat-card-content>
+
+    <mat-card-actions>
+        <app-custom-button (click)="removeCard()">Remove</app-custom-button>
+    </mat-card-actions>
+</mat-card>

@@ -12,14 +12,14 @@
 
         <mat-form-field [appearance]="'outline'">
             <mat-label>Img</mat-label>
-            <input matInput formControlName="imageLink" />
-            <mat-error>{{ control.imageLink.errors | getControlErrorMessage }}</mat-error>
+            <input matInput formControlName="imageSrc" />
+            <mat-error>{{ control.imageSrc.errors | getControlErrorMessage }}</mat-error>
         </mat-form-field>
 
         <mat-form-field [appearance]="'outline'">
             <mat-label>Link video</mat-label>
-            <input matInput formControlName="videoLink" />
-            <mat-error>{{ control.videoLink.errors | getControlErrorMessage }}</mat-error>
+            <input matInput formControlName="videoSrc" />
+            <mat-error>{{ control.videoSrc.errors | getControlErrorMessage }}</mat-error>
         </mat-form-field>
 
         <mat-form-field [appearance]="'outline'">
@@ -73,7 +73,9 @@
     </form>
 
     <div class="btns-wrap">
-        <button mat-flat-button [disabled]="!isFormValid">Create card</button>
+        <button mat-flat-button [disabled]="!isFormValid" (click)="createCard()">
+            Create card
+        </button>
         <button mat-flat-button (click)="resetForm()">Reset</button>
     </div>
 </mat-card>
