@@ -1,5 +1,3 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { cardsReducer } from './cards/cards.reducer';
 import { CARDS_FEATURE } from './cards/cards.state';
 import { contentReducer } from './content/content.reducer';

@@ -1,14 +1,11 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { SwitchFilterBlockViewService } from '@shared/services/switch-filter-block-view/switch-filter-block-view.service';
-import { select, Store } from '@ngrx/store';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { selectContent } from '@store/content/content.selectors';
-import { selectCards } from '@store/cards/cards.selectors';
 import { Content } from '@interface/content.interface';
 import { Card } from '@interface/card.interface';
-import { ContentActions } from '@store/content/content.actions';
 import { openCloseFilterBlock } from './open-closed.animation';
 import { FilterBlockService } from './filter-block/services/filter/filter.service';
+import { ContentStore } from '../../store-signal/content-store';
+import { CardStore } from '../../store-signal/cards-store';
 
 @Component({
     selector: 'app-youtube-page',
@@ -18,13 +15,16 @@ import { FilterBlockService } from './filter-block/services/filter/filter.servic
     animations: [openCloseFilterBlock],
 })
 export class YoutubePageComponent {
+    private readonly contentStore = inject(ContentStore);
+    private readonly cardStore = inject(CardStore);
+
     readonly isShowFilterBlock = this.switchFilterBlockViewService.isShowFilterBlock;
 
     readonly filterOptions = this.filterBlockService.filterOptions;
     readonly sortOptions = this.filterBlockService.sortOptions;
 
-    readonly contentList = toSignal(this.store.pipe(select(selectContent)));
-    readonly cardList = toSignal(this.store.pipe(select(selectCards)));
+    readonly contentList = this.contentStore.contentEntities;
+    readonly cardList = this.cardStore.cardEntities;
 
     readonly contentCardMixture: (Card | Content)[] = [];
 
@@ -33,10 +33,9 @@ export class YoutubePageComponent {
     constructor(
         private readonly switchFilterBlockViewService: SwitchFilterBlockViewService,
         private readonly filterBlockService: FilterBlockService,
-        private readonly store: Store,
     ) {}
 
     loadContent() {
-        this.store.dispatch(ContentActions.loadNextPageContent());
+        this.contentStore.loadNextPageContent();
     }
 }

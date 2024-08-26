@@ -1,7 +1,7 @@
 <app-filter-block [@openClose]="isShowFilterBlock() ? 'open' : 'closed'" />
 
 @let content = contentList() | sortContent: sortOptions() | filterContent: filterOptions();
-@let cards = cardList() ?? [];
+@let cards = cardList();
 @let contentCardMix = contentCardMixture.concat(cards, content);
 
 <app-content-list [contentList]="contentCardMix" [pageSize]="pageSize" (load)="loadContent()" />

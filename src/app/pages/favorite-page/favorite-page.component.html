@@ -1,3 +1,1 @@
-@let favoriteList = favoriteList$ | async;
-
-<app-content-list [contentList]="favoriteList ?? []" />
+<app-content-list [contentList]="favoriteList()" />

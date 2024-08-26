@@ -10,7 +10,7 @@ import { Content } from '@interface/content.interface';
 import { Card } from '@interface/card.interface';
 import { IsCustomCardPipe } from '@shared/pipes/is-custom-card/is-custom-card.pipe';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
-import { toChunk } from '@shared/utils/chunk';
+import { toChunk } from '@shared/utils/to-chunk';
 import { CardComponent } from './card/card.component';
 import { CustomCardComponent } from './custom-card/custom-card.component';
 

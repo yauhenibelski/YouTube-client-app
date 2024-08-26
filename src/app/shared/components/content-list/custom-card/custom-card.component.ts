@@ -1,10 +1,9 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { Card } from '@interface/card.interface';
-import { Store } from '@ngrx/store';
 import { CustomButtonComponent } from '@shared/components/custom-button/custom-button.component';
 import { PaintBorderBottomDirective } from '@shared/directives/paint-border-bottom/paint-border-bottom.directive';
-import { CardsActions } from '@store/cards/cards.actions';
+import { CardStore } from '../../../../store-signal/cards-store';
 
 @Component({
     selector: 'app-custom-card',
@@ -15,11 +14,11 @@ import { CardsActions } from '@store/cards/cards.actions';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CustomCardComponent {
+    private readonly cardStore = inject(CardStore);
+
     readonly content = input.required<Card>();
 
-    constructor(private readonly store: Store) {}
-
     removeCard(): void {
-        this.store.dispatch(CardsActions.deleteCard(this.content().id));
+        this.cardStore.deleteCard(this.content().id);
     }
 }

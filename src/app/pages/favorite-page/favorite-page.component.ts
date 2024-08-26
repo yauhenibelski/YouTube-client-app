@@ -1,8 +1,7 @@
 import { AsyncPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { select, Store } from '@ngrx/store';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ContentListComponent } from '@shared/components/content-list/content-list.component';
-import { selectAllFavoriteVideo } from '@store/favorite-video/favorite.selectors';
+import { FavoriteVideoStore } from '../../store-signal/favorite-video.store';
 
 @Component({
     selector: 'app-favorite-page',
@@ -13,7 +12,5 @@ import { selectAllFavoriteVideo } from '@store/favorite-video/favorite.selectors
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FavoritePageComponent {
-    readonly favoriteList$ = this.store.pipe(select(selectAllFavoriteVideo));
-
-    constructor(private readonly store: Store) {}
+    readonly favoriteList = inject(FavoriteVideoStore)['favorite-videoEntities'];
 }

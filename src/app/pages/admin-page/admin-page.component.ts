@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -8,14 +8,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { GetControlErrorMessagePipe } from '@shared/pipes/get-control-error-message/get-control-error-message.pipe';
-import { Store } from '@ngrx/store';
-import { CardsActions } from '@store/cards/cards.actions';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Card } from '@interface/card.interface';
 import { maxDate } from '@shared/form-validators/max-date.validator';
 import { length } from '@shared/form-validators/length.validator';
 import { required } from '@shared/form-validators/required.validator';
 import { titleValidators } from './card-form-validators/title.validators';
+import { CardStore } from '../../store-signal/cards-store';
 
 @Component({
     selector: 'app-admin-page',
@@ -37,9 +36,9 @@ import { titleValidators } from './card-form-validators/title.validators';
     providers: [provideNativeDateAdapter()],
 })
 export class AdminPageComponent {
+    private readonly cardStore = inject(CardStore);
     constructor(
         private readonly formBuilder: FormBuilder,
-        private readonly store: Store,
         private readonly snackBar: MatSnackBar,
     ) {}
 
@@ -62,7 +61,7 @@ export class AdminPageComponent {
 
         const card: Card = { ...cardData, id: `${Date.now()}`, __typename: 'Card' };
 
-        this.store.dispatch(CardsActions.addCard(card));
+        this.cardStore.addCard(card);
 
         this.resetForm();
 

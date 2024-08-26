@@ -1,4 +1,5 @@
-@let isFavorite = isFavorite$ | async;
+<!-- @let isFavorite = isFavorite$ | async; -->
+@let isFavorite = isFavoriteSignal();
 
 <mat-card [appPaintBorderBottom]="content().snippet.publishedAt">
     <img
@@ -6,8 +7,6 @@
         [src]="content().snippet.thumbnails.medium.url"
         [alt]="content().snippet.title"
     />
-
-    <app-statistics [statistics]="content().statistics" />
 
     <mat-card-content>
         {{ content().snippet.title }}

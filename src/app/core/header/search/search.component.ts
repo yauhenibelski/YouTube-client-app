@@ -1,12 +1,11 @@
-import { ChangeDetectionStrategy, Component, DestroyRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { CustomButtonComponent } from '@shared/components/custom-button/custom-button.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { filter, debounceTime, distinctUntilChanged } from 'rxjs';
-import { Store } from '@ngrx/store';
-import { ContentActions } from '@store/content/content.actions';
+import { filter, debounceTime } from 'rxjs';
+import { ContentStore } from '../../../store-signal/content-store';
 
 @Component({
     selector: 'app-search',
@@ -17,15 +16,14 @@ import { ContentActions } from '@store/content/content.actions';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchComponent {
+    readonly contentStore = inject(ContentStore);
+
     readonly search = new FormControl<string>('', {
         nonNullable: true,
         validators: [Validators.required],
     });
 
-    constructor(
-        private readonly destroyRef: DestroyRef,
-        private readonly store: Store,
-    ) {
+    constructor(private readonly destroyRef: DestroyRef) {
         this.handleSearchInputValue();
     }
 
@@ -35,10 +33,9 @@ export class SearchComponent {
                 takeUntilDestroyed(this.destroyRef),
                 filter(value => value.length >= 3),
                 debounceTime(500),
-                distinctUntilChanged(),
             )
             .subscribe(value => {
-                this.store.dispatch(ContentActions.loadByKeyWord(value));
+                this.contentStore.loadContentByWord(value);
             });
     }
 }
